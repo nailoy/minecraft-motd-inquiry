@@ -23,7 +23,7 @@ object GetMotd : SimpleCommand(
     suspend fun CommandSender.handle(address: String, defaultPort: Int = 25565) {
         val (ip, port) = parseAddress(address, defaultPort)
         if (ip.isEmpty()) {
-            sendMessage("呜~域名或者IP格式不对哦")
+            sendMessage("域名或者IP格式不对哦")
             return
         }
         try {
@@ -67,7 +67,7 @@ object GetMotd : SimpleCommand(
                         if (!string.startsWith("§")) throw IOException("意外的响应：$string")
 
                         val data = string.split("\u0000").dropLastWhile { it.isEmpty() }.toTypedArray()
-                        "成功查询到服务器喵！\n玩家数量：${data[4]}，最大玩家数：${data[5]}\n服务器标语：${
+                        "成功查询到服务器！\n玩家数量：${data[4]}，最大玩家数：${data[5]}\n服务器标语：${
                             data[3].replace(
                                 "\n",
                                 "\\n"
